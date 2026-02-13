@@ -1,32 +1,27 @@
-package com.placideh.rateLimiter.dto.request;
+package com.placideh.rateLimiter.dto.response;
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateTierRequest {
+@Builder
+public class TierResponse {
 
-    @NotBlank(message = "Tier name is required")
+    private String id;
     private String name;
-
     private String description;
-
-    @NotNull(message = "Requests per minute is required")
-    @Min(value = 1, message = "Requests per minute must be at least 1")
     private Integer requestsPerMinute;
-
-    @NotNull(message = "Requests per month is required")
-    @Min(value = 1, message = "Requests per month must be at least 1")
     private Long requestsPerMonth;
-
     private BigDecimal pricePerMonth;
+    private Boolean isActive;
 
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -48,6 +43,13 @@ public class CreateTierRequest {
         return pricePerMonth;
     }
 
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -67,5 +69,9 @@ public class CreateTierRequest {
 
     public void setPricePerMonth(BigDecimal pricePerMonth) {
         this.pricePerMonth = pricePerMonth;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 }
